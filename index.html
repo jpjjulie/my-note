@@ -3,7 +3,10 @@
     <head>
         <meta charset="utf-8">
         <title>My Web Page</title>
-    </head>
+        <link href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href = "main.css">
+       
+        </head>
 
     <body>
         <!-- This is a comment -->
@@ -16,7 +19,7 @@
     <script>const fs = new Filer.FileSystem();
     window.addEventListener('DOMContentLoaded', (event) => {
         fs.readFile('/note', 'utf8', function(err, data) {
-            document.querySelector("#note").innerHTML = err ? "Welcome to my notepad!" : data;
+            document.querySelector("#note").innerHTML = err ? "Welcome to my notepad! 123" : data;
         })
 });
 
