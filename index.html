@@ -7,6 +7,26 @@
 
     <body>
         <!-- This is a comment -->
-        <h1>Hello World!</h1>
+        <h1>My-note!</h1>
+        <div id="note" contenteditable></div>
     </body>
+
+    <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
+
+    <script>const fs = new Filer.FileSystem();
+    window.addEventListener('DOMContentLoaded', (event) => {
+        fs.readFile('/note', 'utf8', function(err, data) {
+            document.querySelector("#note").innerHTML = err ? "Welcome to my notepad!" : data;
+        })
+});
+
+ 
+var saveFile = function(){
+        fs.writeFile('/note', document.querySelector('#note').innerHTML, function (err) {
+            if (err) throw err;
+        });
+    }
+
+    var interval = window.setInterval(saveFile, 2000);
+     </script>
 </html>
