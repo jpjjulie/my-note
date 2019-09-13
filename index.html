@@ -6,20 +6,24 @@
         <link href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href = "main.css">
        
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css">
         </head>
 
     <body>
         <!-- This is a comment -->
-        <h1>My-note!</h1>
+        <h1>Welcome to My-note!</h1>
+        <div class="paper container">
         <div id="note" contenteditable></div>
+    </div>
     </body>
 
     <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
 
-    <script>const fs = new Filer.FileSystem();
+    <script>
+    const fs = new Filer.FileSystem();
     window.addEventListener('DOMContentLoaded', (event) => {
         fs.readFile('/note', 'utf8', function(err, data) {
-            document.querySelector("#note").innerHTML = err ? "Welcome to my notepad! 123" : data;
+            document.querySelector("#note").innerHTML = err ? "Start typing to take notes..." : data;
         })
 });
 
