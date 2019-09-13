@@ -1,0 +1,13 @@
+
+ body {
+    font-family: 'Signika', sans-serif;
+    background-color: azure
+  }
+
+  .paper.container {
+background-color: yellow;
+border-style: solid;
+border-width: thick;
+  }
+
+  h1 {text-align:center;}
