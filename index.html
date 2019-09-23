@@ -5,6 +5,7 @@
         <title>My Web Page</title>
         <link href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href = "main.css">
+    <link rel="stylesheet" type="text/css" href="trix.css">
        
     <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css">
         </head>
@@ -13,25 +14,34 @@
         <!-- This is a comment -->
         <h1>Welcome to My-note!</h1>
         <div class="paper container">
-        <div id="note" contenteditable></div>
+        <div id="note">
+            <input id="x" type="hidden" name="content">
+            <<trix-editor input="x"></trix-editor>>
+        </div>
     </div>
     </body>
 
     <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
+    <script type="text/javascript" src="trix.js"></script>
 
     <script>
     const fs = new Filer.FileSystem();
     window.addEventListener('DOMContentLoaded', (event) => {
         fs.readFile('/note', 'utf8', function(err, data) {
-            document.querySelector("#note").innerHTML = err ? "Start typing to take notes..." : data;
+            
+            var element = document.querySelector("trix-editor");
+            if (err)
+                element.editor.insertString("Start typing to take notes...");
+            else {
+                element.editor.loadJSON(JSON.parse(localStorage["editorState"]));
+            }
         })
 });
 
  
 var saveFile = function(){
-        fs.writeFile('/note', document.querySelector('#note').innerHTML, function (err) {
-            if (err) throw err;
-        });
+        var element = document.querySelector("trix-editor");
+        localStorage["editorState"] = JSON.stringify(element.editor)
     }
 
     var interval = window.setInterval(saveFile, 2000);
